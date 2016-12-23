@@ -39,6 +39,9 @@ endfunction
 command! -nargs=* -range -bang PerlTidy <line1>,<line2>call s:PerlTidy()
 
 vnoremap :call PerlTidy() t
-au BufWritePre *.p[lm],*.t call s:PerlTidy()
+
+if exists('g:perltidy_tidy_on_wq')
+	au BufWritePre *.p[lm],*.t call s:PerlTidy()
+en
 
 let g:perltidy = 1
